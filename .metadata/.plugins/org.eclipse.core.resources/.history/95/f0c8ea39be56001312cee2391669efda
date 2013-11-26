@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class StockListAdapter extends BaseAdapter implements UndoListener {
 
@@ -45,6 +46,9 @@ public class StockListAdapter extends BaseAdapter implements UndoListener {
 		// TODO SET VALUES, SENSITIVE CONTENT
 		Stock stock = stocks.get(position);
 		view = view != null ? view : inflater.inflate(R.layout.stock_list_row, null);
+		
+		// TODO REMOVE
+		((TextView)view.findViewById(R.id.dummy_content)).setText(stock.dummy + "");
 		return view;
 	}
 
