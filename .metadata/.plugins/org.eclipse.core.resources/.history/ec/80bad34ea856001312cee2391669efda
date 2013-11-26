@@ -1,0 +1,26 @@
+package com.example.stockviewer;
+
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+public class StockListOnItemSelectedListener implements OnItemSelectedListener {
+	
+	private UndoBarController mUndoBarController = null;
+	
+	public StockListOnItemSelectedListener(UndoBarController munBarController) {
+		super();
+		this.mUndoBarController = mUndoBarController;
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parentView, View childView, int position, long id) {
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		return;
+	}
+
+}

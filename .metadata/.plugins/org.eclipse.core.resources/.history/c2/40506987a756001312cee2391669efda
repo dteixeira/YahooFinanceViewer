@@ -1,0 +1,5 @@
+package com.example.stockviewer;
+
+public class StockListOnItemSelectedListener {
+
+}

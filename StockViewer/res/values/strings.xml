@@ -7,7 +7,7 @@
     
     <!-- Undo strings -->
     <string name="action">Perform action</string>
-	<string name="undobar_sample_message">Action performed.</string>
 	<string name="undo">Undo</string>
+	<string name="undo_stock_remove">Stocks removed</string>
 
 </resources>

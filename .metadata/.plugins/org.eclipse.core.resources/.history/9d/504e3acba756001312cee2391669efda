@@ -1,0 +1,20 @@
+package com.example.stockviewer;
+
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+public class StockListOnItemSelectedListener implements OnItemSelectedListener {
+
+	@Override
+	public void onItemSelected(AdapterView<Stock> parentView, View childView, int position, long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		return;
+	}
+
+}
