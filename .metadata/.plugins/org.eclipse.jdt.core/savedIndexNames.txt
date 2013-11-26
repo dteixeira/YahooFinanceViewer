@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/home/diogo/Repositories/Android/YahooFinanceViewer/.metadata/.plugins/org.eclipse.jdt.core
+634904234.index
+1091608622.index
+4004767187.index
