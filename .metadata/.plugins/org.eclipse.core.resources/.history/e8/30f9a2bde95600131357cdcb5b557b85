@@ -1,5 +1,0 @@
-<resources>
-    <!-- Card related colors -->
-    <color name="color_card_ext_background">#e5e5e5</color>
-    <color name="color_card_shadow">#60cccccc</color>
-</resources>
