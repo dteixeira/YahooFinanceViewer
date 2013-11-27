@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:weightSum="1"
+    android:background="@drawable/selector_card"
+    android:paddingTop="10dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+    
+    <!-- Name and tick -->
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+	    <TextView
+	        android:layout_height="30dp"
+	        android:layout_width="wrap_content"
+	        android:id="@+id/stock_tick"
+	        android:textColor="#444444"
+	        android:textSize="20sp" />
+	    
+	    <TextView
+	        android:layout_height="30dp"
+	        android:layout_width="wrap_content"
+	        android:id="@+id/stock_name" />
+
+    </LinearLayout>
+
+</LinearLayout>
