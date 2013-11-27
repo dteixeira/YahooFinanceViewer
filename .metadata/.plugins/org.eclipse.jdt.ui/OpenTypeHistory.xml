@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=StockViewer/\/home\/diogo\/android-sdks\/platforms\/android-18\/android.jar&lt;android.widget(BaseAdapter.class[BaseAdapter" modifiers="1057" timestamp="1381911373000"/>
-<typeInfo handle="=StockViewer/\/home\/diogo\/android-sdks\/platforms\/android-18\/android.jar&lt;java.io(Serializable.class[Serializable" modifiers="1537" timestamp="1381911373000"/>
-<typeInfo handle="=StockViewer/\/home\/diogo\/android-sdks\/platforms\/android-18\/android.jar&lt;android.os(Parcelable.class[Parcelable" modifiers="1537" timestamp="1381911373000"/>
-<typeInfo handle="=StockViewer/\/home\/diogo\/android-sdks\/platforms\/android-18\/android.jar&lt;java.sql(ParameterMetaData.class[ParameterMetaData" modifiers="1537" timestamp="1381911373000"/>
+<typeInfo handle="=StockViewer/src&lt;com.example.stockviewer{SwipeDismissListViewTouchListener.java[SwipeDismissListViewTouchListener[DismissCallbacks" modifiers="513" timestamp="1385472344000"/>
 </typeInfoHistroy>

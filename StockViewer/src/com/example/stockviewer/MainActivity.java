@@ -1,6 +1,7 @@
 package com.example.stockviewer;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -51,11 +52,19 @@ public class MainActivity extends Activity {
         mStockListAdapter.onRestoreInstanceState(savedInstanceState);
     }
     
+    // TODO REMOVE
     private ArrayList<Stock> getDummyStocks(int n) {
-    	// TODO REMOVE
     	ArrayList<Stock> list = new ArrayList<Stock>();
     	for(int i = 0; i < n; ++i) {
     		Stock stock = new Stock();
+    		stock.setTick("GOOG");
+    		stock.setName("Google Inc.");
+    		stock.setDate(new Date());
+    		stock.setStockValue(1058.4132);
+    		stock.setChange(12.4);
+    		stock.setChangePercentage(1.19);
+    		stock.setnStocks(500);
+    		stock.setTotalValue(stock.getnStocks() * stock.getStockValue());
     		list.add(stock);
     	}
     	return list;

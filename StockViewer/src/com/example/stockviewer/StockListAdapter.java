@@ -1,6 +1,10 @@
 package com.example.stockviewer;
 
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import com.example.stockviewer.UndoBarController.UndoListener;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class StockListAdapter extends BaseAdapter implements UndoListener {
 
@@ -45,6 +50,29 @@ public class StockListAdapter extends BaseAdapter implements UndoListener {
 		// TODO SET VALUES, SENSITIVE CONTENT
 		Stock stock = stocks.get(position);
 		view = view != null ? view : inflater.inflate(R.layout.stock_list_row, null);
+		
+		// Find fields.
+		TextView tick = (TextView) view.findViewById(R.id.stock_tick);
+		TextView name = (TextView) view.findViewById(R.id.stock_name);
+		TextView date = (TextView) view.findViewById(R.id.stock_date);
+		TextView stockValue = (TextView) view.findViewById(R.id.stock_stock_value);
+		TextView change = (TextView) view.findViewById(R.id.stock_change);
+		TextView changePercentage = (TextView) view.findViewById(R.id.stock_change_percentage);
+		TextView nStocks = (TextView) view.findViewById(R.id.stock_n_stocks);
+		TextView totalValue = (TextView) view.findViewById(R.id.stock_total_value);
+		
+		// Set fields' values.
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setMinimumFractionDigits(2);
+		nf.setMaximumFractionDigits(2);
+		tick.setText(stock.getTick());
+		name.setText(stock.getName());
+		date.setText(new SimpleDateFormat("HH:mm, MMMM d", Locale.US).format(stock.getDate()));
+		stockValue.setText(nf.format(stock.getStockValue()));
+		change.setText(nf.format(stock.getChange()));
+		changePercentage.setText(nf.format(stock.getChangePercentage()) + "%");
+		totalValue.setText(nf.format(stock.getTotalValue()));
+		nStocks.setText("" + stock.getnStocks());
 		return view;
 	}
 
