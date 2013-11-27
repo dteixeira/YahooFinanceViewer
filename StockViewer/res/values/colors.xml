@@ -7,6 +7,11 @@
     
     <!-- Stock related colors -->
     <color name="color_stock_tick">#444444</color>
-    <color name="color_stock_name">#888888</color>
-    <color name="color_stock_date">#aaaaaa</color>
+    <color name="color_stock_name">#666666</color>
+    <color name="color_stock_date">#999999</color>
+    <color name="color_stock_stock_value">#57a0d3</color>
+    <color name="color_stock_total_value">#0047ab</color>
+    <color name="color_stock_n_stocks">#5d8aa9</color>
+    <color name="color_stock_change_positive">#02a020</color>
+    <color name="color_stock_change_negative">#dc143b</color>
 </resources>

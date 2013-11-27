@@ -38,7 +38,7 @@
 	<!-- Update date -->
 	<TextView 
 	    android:id="@+id/stock_date"
-	    android:layout_height="15dp"
+	    android:layout_height="18dp"
 	    android:layout_width="wrap_content"
 	    android:textSize="14sp"
 	    android:textColor="@color/color_stock_date" />
@@ -57,6 +57,7 @@
 	        android:layout_height="30dp"
 	        android:textSize="22sp"
 	        android:layout_weight="0.5"
+	        android:textColor="@color/color_stock_stock_value"
 	        android:gravity="center_vertical|left"/>
 	    
 	    <TextView 
@@ -88,19 +89,20 @@
 	    <TextView 
 	        android:id="@+id/stock_total_value"
 	        android:layout_width="0dp"
-	        android:layout_height="30dp"
+	        android:layout_height="40dp"
 	        android:textSize="18sp"
 	        android:layout_weight="0.5"
+	        android:textColor="@color/color_stock_total_value"
 	        android:gravity="center_vertical|left"/>
 	    
 	    <TextView 
 	        android:id="@+id/stock_n_stocks"
 	        android:layout_width="0dp"
-	        android:layout_height="30dp"
+	        android:layout_height="40dp"
 	        android:layout_weight="0.5"
-	        android:textSize="22sp"
-	        android:gravity="center_vertical|right"
-	        android:textStyle="bold" />
+	        android:textSize="28sp"
+	        android:textColor="@color/color_stock_n_stocks"
+	        android:gravity="center_vertical|right" />
 	    
 	</LinearLayout>
     
