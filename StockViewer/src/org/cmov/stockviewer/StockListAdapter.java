@@ -187,31 +187,36 @@ public class StockListAdapter extends BaseAdapter {
 				});
 				
 				// Flip animation.
-				stock.setFlipped(true);
-				Animation animation = AnimationUtils.loadAnimation(context, R.anim.to_middle);
-			    animation.setDuration(250);
-			    view.setEnabled(false);
-			    ((View) view.getParent()).clearAnimation();
-	            animation.setAnimationListener(new AnimationListener() {
-					
-					@Override
-					public void onAnimationStart(Animation animation) {}
-					
-					@Override
-					public void onAnimationRepeat(Animation animation) {}
-					
-					@Override
-					public void onAnimationEnd(Animation animation) {
-						view.setVisibility(View.GONE);
-						graph.setVisibility(View.VISIBLE);
-						Animation animation1 = AnimationUtils.loadAnimation(context, R.anim.from_middle);
-					    animation1.setDuration(250);
-					    ((View) view.getParent()).setAnimation(animation1);
-					    ((View) view.getParent()).animate();
-					}
-				});
-	            ((View) view.getParent()).setAnimation(animation);
-	            ((View) view.getParent()).startAnimation(animation);
+				if(stock.isFlipped()) {
+					view.setVisibility(View.GONE);
+					graph.setVisibility(View.VISIBLE);
+				} else {
+					stock.setFlipped(true);
+					Animation animation = AnimationUtils.loadAnimation(context, R.anim.to_middle);
+				    animation.setDuration(250);
+				    view.setEnabled(false);
+				    ((View) view.getParent()).clearAnimation();
+		            animation.setAnimationListener(new AnimationListener() {
+						
+						@Override
+						public void onAnimationStart(Animation animation) {}
+						
+						@Override
+						public void onAnimationRepeat(Animation animation) {}
+						
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							view.setVisibility(View.GONE);
+							graph.setVisibility(View.VISIBLE);
+							Animation animation1 = AnimationUtils.loadAnimation(context, R.anim.from_middle);
+						    animation1.setDuration(250);
+						    ((View) view.getParent()).setAnimation(animation1);
+						    ((View) view.getParent()).animate();
+						}
+					});
+		            ((View) view.getParent()).setAnimation(animation);
+		            ((View) view.getParent()).startAnimation(animation);
+				}
 			}
 		};
 	}
