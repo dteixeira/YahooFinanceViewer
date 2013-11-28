@@ -33,4 +33,5 @@
 		    android:id="@+id/undobar_button"
 		    style="@style/UndoBarButton"/>
 	</LinearLayout>
+
 </RelativeLayout>

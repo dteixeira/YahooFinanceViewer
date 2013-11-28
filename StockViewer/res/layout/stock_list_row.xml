@@ -111,7 +111,7 @@
 		        android:layout_width="0dp"
 		        android:layout_height="40dp"
 		        android:textSize="18sp"
-		        android:layout_weight="0.5"
+		        android:layout_weight="0.6"
 		        android:textColor="@color/color_stock_total_value"
 		        android:gravity="center_vertical|left"/>
 		    
@@ -119,8 +119,8 @@
 		        android:id="@+id/stock_n_stocks"
 		        android:layout_width="0dp"
 		        android:layout_height="40dp"
-		        android:layout_weight="0.5"
-		        android:textSize="28sp"
+		        android:layout_weight="0.4"
+		        android:textSize="24sp"
 		        android:textColor="@color/color_stock_n_stocks"
 		        android:gravity="center_vertical|right" />
 		    
@@ -171,6 +171,110 @@
 		    </RelativeLayout>
 	
 	    </LinearLayout>
+	    
+	    <!-- Update date -->
+		<TextView 
+		    android:id="@+id/stock_date_graph"
+		    android:layout_height="18dp"
+		    android:layout_width="wrap_content"
+		    android:textSize="14sp"
+		    android:textColor="@color/color_stock_date" />
+		
+		<SeekBar
+	        android:id="@+id/stock_multiplier_seek"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginBottom="5dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:progress="0"
+	        android:max="3" />
+		
+		<LinearLayout
+		    android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="1.0"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginLeft="10dp" >
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.1"
+		        android:layout_width="0dp"
+		        android:gravity="center"
+		        android:textSize="12sp"
+		        android:text="@string/stock_times_1"/>
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.50"
+		        android:layout_width="0dp"
+		        android:gravity="center"
+		        android:textSize="12sp"
+		        android:text="@string/stock_times_10"/>
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.10"
+		        android:layout_width="0dp"
+		        android:gravity="center"
+		        android:textSize="12sp"
+		        android:text="@string/stock_times_100"/>
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.30"
+		        android:layout_width="0dp"
+		        android:gravity="right"
+		        android:textSize="12sp"
+		        android:text="@string/stock_times_1000"/>
+		    
+		</LinearLayout>
+		
+		<SeekBar
+	        android:id="@+id/stock_n_stocks_seek"
+	        android:layout_marginTop="10dp"
+	        android:layout_marginBottom="5dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:progress="0"
+	        android:max="99" />
+		
+		<LinearLayout
+		    android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="1.0"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginLeft="10dp" >
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.5"
+		        android:layout_width="0dp"
+		        android:gravity="left"
+		        android:textSize="12sp"
+		        android:id="@+id/stock_n_stocks_seek_min"
+		        android:text="@string/stock_n_stocks_default_min"/>
+		    
+		    <TextView 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.5"
+		        android:layout_width="0dp"
+		        android:gravity="right"
+		        android:textSize="12sp"
+		        android:id="@+id/stock_n_stocks_seek_max"
+		        android:text="@string/stock_n_stocks_default_max"/>
+		    
+		</LinearLayout>
+		
+		<TextView 
+	        android:id="@+id/stock_n_stocks_graph"
+	        android:layout_width="fill_parent"
+	        android:layout_height="40dp"
+	        android:textSize="24sp"
+	        android:textColor="@color/color_stock_n_stocks"
+	        android:gravity="center_vertical|right" />
         
     </LinearLayout>
     

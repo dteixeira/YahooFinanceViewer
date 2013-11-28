@@ -16,12 +16,32 @@ public class Stock implements Serializable {
 	private double change = 0.0;
 	private double changePercentage = 0.0;
 	private boolean changePositive = false;
+	private int stockMultiplier = 1;
+	private boolean flipped = false;
+
+	public boolean isFlipped() {
+		return flipped;
+	}
+
+	public void setFlipped(boolean flipped) {
+		this.flipped = flipped;
+	}
+
+	public int getStockMultiplier() {
+		return stockMultiplier;
+	}
+
+	public void setStockMultiplier(int stockMultiplier) {
+		this.stockMultiplier = stockMultiplier;
+	}
 
 	public void updateStock(String csv) {
 		String[] tokens = csv.split(",");
 		for(int i = 0; i < tokens.length; ++i) {
 			tokens[i] = tokens[i].replace("\"", "");
 		}
+		stockMultiplier = 1;
+		flipped = false;
 		name = tokens[0];
 		tick = tokens[1];
 		stockValue = Double.parseDouble(tokens[2]);

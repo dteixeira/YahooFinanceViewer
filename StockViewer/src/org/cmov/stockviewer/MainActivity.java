@@ -32,11 +32,15 @@ public class MainActivity extends Activity implements HttpRequestResultCallback 
         // Set stock list.
         stockList = (ListView) findViewById(R.id.stock_list);
         stockList.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
-        setupAdapters();
+        setupAdapters(savedInstanceState);
     }
     
-    private void setupAdapters() {
-    	mStockListAdapter = new StockListAdapter(getApplicationContext(), getDummyStocks(10));
+    private void setupAdapters(Bundle savedInstanceState) {
+    	if(savedInstanceState == null) {
+    		mStockListAdapter = new StockListAdapter(getApplicationContext(), getDummyStocks(10));
+    	} else {
+    		mStockListAdapter = new StockListAdapter(getApplicationContext(), new ArrayList<Stock>());
+    	}
         mStockListCallbacks = new StockListCallbacks(getApplicationContext());
         mUndoBarController = new UndoBarController(findViewById(R.id.undobar), mStockListCallbacks);
         mAnimationAdapter = new CustomSwipeDismissAdapter(mStockListAdapter, mStockListCallbacks);
@@ -66,13 +70,14 @@ public class MainActivity extends Activity implements HttpRequestResultCallback 
         super.onRestoreInstanceState(savedInstanceState);
         mUndoBarController.onRestoreInstanceState(savedInstanceState);
         mStockListAdapter.onRestoreInstanceState(savedInstanceState);
+        mStockListAdapter.notifyDataSetChanged();
     }
     
     // TODO REMOVE
     private ArrayList<Stock> getDummyStocks(int n) {
     	ArrayList<Stock> list = new ArrayList<Stock>();
 		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
-		paramList.add(new BasicNameValuePair("s", "GOOG,MSFT,AAPL"));
+		paramList.add(new BasicNameValuePair("s", "GOOG,MSFT,AAPL,DELL"));
 		paramList.add(new BasicNameValuePair("f", "n0s0l1c1p2"));
 		HttpRequestAsyncTask task =  new HttpRequestAsyncTask(
 				this, 
@@ -86,16 +91,17 @@ public class MainActivity extends Activity implements HttpRequestResultCallback 
 
 	@Override
 	public void onRequestResult(boolean result, String data, int requestCode) {
-		String[] lines = data.split("\n");
-		for(String line : lines) {
-			if(!line.equals("")) {
-				Stock stock = new Stock();
-				stock.setnStocks(134654);
-				stock.updateStock(line);
-				mStockListAdapter.addItem(stock);
-				mAnimationAdapter.notifyDataSetChanged();
+		if(result) {
+			String[] lines = data.split("\n");
+			for(String line : lines) {
+				if(!line.equals("")) {
+					Stock stock = new Stock();
+					stock.setnStocks(134654);
+					stock.updateStock(line);
+					mStockListAdapter.addItem(stock);
+					mAnimationAdapter.notifyDataSetInvalidated();
+				}
 			}
 		}
-		
 	}
 }
