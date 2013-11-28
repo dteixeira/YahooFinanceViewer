@@ -12,98 +12,166 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp" >
     
-    <!-- Name and tick -->
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/stock_standard_layout">
     
-	    <TextView
-	        android:layout_height="30dp"
-	        android:layout_width="wrap_content"
-	        android:id="@+id/stock_tick"
-	        android:textColor="@color/color_stock_tick"
-	        android:textSize="24sp"
-	        android:paddingRight="10dp" />
+	    <!-- Name and tick -->
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
 	    
-	    <TextView
-	        android:layout_height="30dp"
-	        android:layout_width="wrap_content"
-	        android:id="@+id/stock_name"
-	        android:textSize="18sp"
-	        android:textColor="@color/color_stock_name" />
-
+		    <TextView
+		        android:layout_height="30dp"
+		        android:layout_width="wrap_content"
+		        android:id="@+id/stock_tick"
+		        android:textColor="@color/color_stock_tick"
+		        android:textSize="24sp"
+		        android:paddingRight="10dp" />
+		    
+		    <TextView
+		        android:layout_height="30dp"
+		        android:layout_width="wrap_content"
+		        android:id="@+id/stock_name"
+		        android:textSize="18sp"
+		        android:textColor="@color/color_stock_name" />
+		    
+		    <RelativeLayout
+		        android:layout_height="30dp"
+		        android:layout_width="fill_parent" >
+		        
+				<ImageButton 
+			        android:id="@+id/stock_show_graph_button"
+			        android:layout_height="fill_parent"
+			        android:layout_width="wrap_content"
+			        android:src="@drawable/ic_action_core_overflow"
+			        android:background="@android:color/transparent"
+			        android:layout_alignParentRight="true" />
+	
+		    </RelativeLayout>
+	
+	    </LinearLayout>
+	    
+		<!-- Update date -->
+		<TextView 
+		    android:id="@+id/stock_date"
+		    android:layout_height="18dp"
+		    android:layout_width="wrap_content"
+		    android:textSize="14sp"
+		    android:textColor="@color/color_stock_date" />
+		
+		<!-- Stock values info -->
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:weightSum="1.0"
+		    android:paddingTop="20dp" >
+		    
+		    <TextView 
+		        android:id="@+id/stock_stock_value"
+		        android:layout_width="0dp"
+		        android:layout_height="30dp"
+		        android:textSize="22sp"
+		        android:layout_weight="0.5"
+		        android:textColor="@color/color_stock_stock_value"
+		        android:gravity="center_vertical|left"/>
+		    
+		    <TextView 
+		        android:id="@+id/stock_change"
+		        android:layout_width="0dp"
+		        android:layout_height="30dp"
+		        android:layout_weight="0.25"
+		        android:textSize="16sp"
+		        android:gravity="center_vertical|right" />
+		    
+		    <TextView 
+		        android:id="@+id/stock_change_percentage"
+		        android:layout_width="0dp"
+		        android:layout_height="30dp"
+		        android:layout_weight="0.25"
+		        android:textSize="16sp"
+		        android:gravity="center_vertical|right" />
+		    
+		</LinearLayout>
+		
+		<!-- Client stock info -->
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:weightSum="1.0"
+		    android:paddingTop="15dp" >
+		    
+		    <TextView 
+		        android:id="@+id/stock_total_value"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:textSize="18sp"
+		        android:layout_weight="0.5"
+		        android:textColor="@color/color_stock_total_value"
+		        android:gravity="center_vertical|left"/>
+		    
+		    <TextView 
+		        android:id="@+id/stock_n_stocks"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:layout_weight="0.5"
+		        android:textSize="28sp"
+		        android:textColor="@color/color_stock_n_stocks"
+		        android:gravity="center_vertical|right" />
+		    
+		</LinearLayout>
+	
+	</LinearLayout>
+	
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/stock_graph_layout"
+        android:visibility="gone" >
+		
+        <!-- Name and tick -->
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	    
+		    <TextView
+		        android:layout_height="30dp"
+		        android:layout_width="wrap_content"
+		        android:id="@+id/stock_tick_graph"
+		        android:textColor="@color/color_stock_tick"
+		        android:textSize="24sp"
+		        android:paddingRight="10dp" />
+		    
+		    <TextView
+		        android:layout_height="30dp"
+		        android:layout_width="wrap_content"
+		        android:id="@+id/stock_name_graph"
+		        android:textSize="18sp"
+		        android:textColor="@color/color_stock_name" />
+		    
+		    <RelativeLayout
+		        android:layout_height="30dp"
+		        android:layout_width="fill_parent" >
+		        
+				<ImageButton 
+			        android:id="@+id/stock_show_standard_button"
+			        android:layout_height="fill_parent"
+			        android:layout_width="wrap_content"
+			        android:src="@drawable/ic_action_core_overflow"
+			        android:background="@android:color/transparent"
+			        android:layout_alignParentRight="true" />
+	
+		    </RelativeLayout>
+	
+	    </LinearLayout>
+        
     </LinearLayout>
-    
-	<!-- Update date -->
-	<TextView 
-	    android:id="@+id/stock_date"
-	    android:layout_height="18dp"
-	    android:layout_width="wrap_content"
-	    android:textSize="14sp"
-	    android:textColor="@color/color_stock_date" />
-	
-	<!-- Stock values info -->
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:weightSum="1.0"
-	    android:paddingTop="20dp" >
-	    
-	    <TextView 
-	        android:id="@+id/stock_stock_value"
-	        android:layout_width="0dp"
-	        android:layout_height="30dp"
-	        android:textSize="22sp"
-	        android:layout_weight="0.5"
-	        android:textColor="@color/color_stock_stock_value"
-	        android:gravity="center_vertical|left"/>
-	    
-	    <TextView 
-	        android:id="@+id/stock_change"
-	        android:layout_width="0dp"
-	        android:layout_height="30dp"
-	        android:layout_weight="0.25"
-	        android:textSize="16sp"
-	        android:gravity="center_vertical|right" />
-	    
-	    <TextView 
-	        android:id="@+id/stock_change_percentage"
-	        android:layout_width="0dp"
-	        android:layout_height="30dp"
-	        android:layout_weight="0.25"
-	        android:textSize="16sp"
-	        android:gravity="center_vertical|right" />
-	    
-	</LinearLayout>
-	
-	<!-- Client stock info -->
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:weightSum="1.0"
-	    android:paddingTop="15dp" >
-	    
-	    <TextView 
-	        android:id="@+id/stock_total_value"
-	        android:layout_width="0dp"
-	        android:layout_height="40dp"
-	        android:textSize="18sp"
-	        android:layout_weight="0.5"
-	        android:textColor="@color/color_stock_total_value"
-	        android:gravity="center_vertical|left"/>
-	    
-	    <TextView 
-	        android:id="@+id/stock_n_stocks"
-	        android:layout_width="0dp"
-	        android:layout_height="40dp"
-	        android:layout_weight="0.5"
-	        android:textSize="28sp"
-	        android:textColor="@color/color_stock_n_stocks"
-	        android:gravity="center_vertical|right" />
-	    
-	</LinearLayout>
     
 </LinearLayout>

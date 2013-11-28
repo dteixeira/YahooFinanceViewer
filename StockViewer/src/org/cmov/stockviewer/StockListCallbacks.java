@@ -1,6 +1,7 @@
 package org.cmov.stockviewer;
 
 import org.cmov.stockviewer.UndoBarController.UndoListener;
+import org.cmov.stockviewer.animations.CustomOnDismissCallback;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +9,9 @@ import android.os.Parcelable;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import com.example.stockviewer.R;
-import com.haarman.listviewanimations.itemmanipulation.OnDismissCallback;
-import com.haarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
-public class StockListCallbacks implements OnDismissCallback, UndoListener {
+public class StockListCallbacks implements CustomOnDismissCallback, UndoListener {
 	
 	private BaseAdapter mListAdapter = null;
 	private StockListAdapter mStockListAdapter = null;
@@ -48,22 +48,31 @@ public class StockListCallbacks implements OnDismissCallback, UndoListener {
 
 	@Override
 	public void onUndo(Parcelable token) {
-		int position = mStockListAdapter.onUndo(token);
+		int position = mStockListAdapter.onUndo(token) + 1;
 		mListAdapter.notifyDataSetChanged();
 		if(position >= 0) {
-			((SwingRightInAnimationAdapter) mListAdapter).setShouldAnimateFromPosition(position);
+			((SwingBottomInAnimationAdapter) mListAdapter).setShouldAnimateFromPosition(position);
 		}
 	}
 
 	@Override
 	public void onDismiss(AbsListView listView, int[] reverseSortedPositions) {
-		int position = reverseSortedPositions.length > 0 ? reverseSortedPositions[0] : -1;
+		int position = reverseSortedPositions.length > 0 ? reverseSortedPositions[0] - 1 : -1;
 		Intent intent = new Intent();
 		intent.putExtra(StockListAdapter.EXTRA_STOCK_LIST_REMOVE_POSITION, position);
 		mStockListAdapter.removeItem(position);
 		mUndoBarController.hideUndoBar(true);
 		mUndoBarController.showUndoBar(false, context.getString(R.string.undo_stock_remove), intent);
 		mListAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public boolean isDismissable(int position) {
+		if(position == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

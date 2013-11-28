@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.cmov.stockviewer.animations.CustomSwipeDismissAdapter;
 import org.cmov.stockviewer.requests.HttpRequestAsyncTask;
 import org.cmov.stockviewer.requests.HttpRequestResultCallback;
 import com.example.stockviewer.R;
-import com.haarman.listviewanimations.itemmanipulation.SwipeDismissAdapter;
-import com.haarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -39,9 +39,9 @@ public class MainActivity extends Activity implements HttpRequestResultCallback 
     	mStockListAdapter = new StockListAdapter(getApplicationContext(), getDummyStocks(10));
         mStockListCallbacks = new StockListCallbacks(getApplicationContext());
         mUndoBarController = new UndoBarController(findViewById(R.id.undobar), mStockListCallbacks);
-        mAnimationAdapter = new SwipeDismissAdapter(mStockListAdapter, mStockListCallbacks);
-        mAnimationAdapter = new SwingRightInAnimationAdapter(mAnimationAdapter);
-        ((SwingRightInAnimationAdapter) mAnimationAdapter).setAbsListView(stockList);
+        mAnimationAdapter = new CustomSwipeDismissAdapter(mStockListAdapter, mStockListCallbacks);
+        mAnimationAdapter = new SwingBottomInAnimationAdapter(mAnimationAdapter);
+        ((SwingBottomInAnimationAdapter) mAnimationAdapter).setAbsListView(stockList);
         stockList.setAdapter(mAnimationAdapter);
         mStockListCallbacks.setmListAdapter(mAnimationAdapter);
         mStockListCallbacks.setmStockListAdapter(mStockListAdapter);
