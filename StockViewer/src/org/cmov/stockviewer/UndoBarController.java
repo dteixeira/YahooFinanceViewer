@@ -1,7 +1,5 @@
 package org.cmov.stockviewer;
 
-import com.example.stockviewer.R;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;

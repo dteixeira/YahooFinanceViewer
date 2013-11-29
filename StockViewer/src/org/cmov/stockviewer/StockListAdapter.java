@@ -16,10 +16,6 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYValueSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
-
-import com.example.stockviewer.R;
-
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -101,9 +97,36 @@ public class StockListAdapter extends BaseAdapter {
 	}
 	
 	private void getChartView(Stock stock, View view) {
+		// Find view.
 		LinearLayout layout = (LinearLayout) view.findViewById(R.id.stock_chart_layout);
+		
+		// Build chart data sets.
 		XYMultipleSeriesDataset series = new XYMultipleSeriesDataset();
-		TimeSeries serie = new TimeSeries("");
+		series.addSeries(stock.getHistoricDataAsTimeSeries());
+		
+		// Build and setup chart renderer.
+		XYMultipleSeriesRenderer fullRenderer = new XYMultipleSeriesRenderer();
+		XYSeriesRenderer renderer = new XYSeriesRenderer();
+		renderer.setLineWidth(5);
+		renderer.setColor(Color.parseColor("#5d8aa9"));
+		fullRenderer.setLabelsTextSize(30);
+		fullRenderer.addSeriesRenderer(renderer);
+		fullRenderer.setYLabelsPadding(10);
+		fullRenderer.setYLabelsAlign(Align.RIGHT);
+		fullRenderer.setMarginsColor(Color.argb(0x00, 0xff, 0x00, 0x00));
+		fullRenderer.setShowLegend(false);
+		fullRenderer.setShowGridX(true);
+		fullRenderer.setGridColor(Color.parseColor("#5d8aa9"));
+		fullRenderer.setXLabelsColor(Color.parseColor("#333333"));
+		fullRenderer.setYLabelsColor(0, Color.parseColor("#333333"));
+		fullRenderer.setMargins(new int[] { 50, 80, 0, 20 });
+		fullRenderer.setPanEnabled(false);
+		
+		// Create and set chart.
+		GraphicalView mChartView = ChartFactory.getTimeChartView(context, series, fullRenderer, "dd/MM");
+        layout.addView(mChartView);
+		
+		/*TimeSeries serie = new TimeSeries("");
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		serie.add(c.getTime(), 400);
@@ -185,7 +208,7 @@ public class StockListAdapter extends BaseAdapter {
 		//renderers.setXAxisMax(31);
 		renderers.setPanEnabled(false);
 		GraphicalView mChartView = ChartFactory.getTimeChartView(context, series, renderers, "dd/MM");
-        layout.addView(mChartView);
+        layout.addView(mChartView);*/
 	}
 	
 	private void getSettingsView(Stock stock, View view) {
@@ -274,6 +297,7 @@ public class StockListAdapter extends BaseAdapter {
 					View parent = (View) seekBar.getParent().getParent();
 					TextView nStocksSettings = ((TextView) parent.findViewById(R.id.stock_n_stocks_settings));
 					TextView nStocks = ((TextView) parent.findViewById(R.id.stock_n_stocks));
+					TextView totalValue = ((TextView) parent.findViewById(R.id.stock_total_value));
 					
 					// Update stocks.
 					int startInt = stock.getnStocks() / stock.getStockMultiplier() / 100 * (100 * stock.getStockMultiplier());
@@ -282,8 +306,12 @@ public class StockListAdapter extends BaseAdapter {
 					stock.setTotalValue(stock.getStockValue() * stock.getnStocks());
 					
 					// Set values.
+					NumberFormat nf = NumberFormat.getInstance();
+					nf.setMinimumFractionDigits(2);
+					nf.setMaximumFractionDigits(2);
 					nStocksSettings.setText(NumberFormat.getNumberInstance(Locale.US).format(stock.getnStocks()));
 					nStocks.setText(NumberFormat.getNumberInstance(Locale.US).format(stock.getnStocks()));
+					totalValue.setText(nf.format(stock.getTotalValue()));
 				}
 			}
 		};
@@ -307,6 +335,7 @@ public class StockListAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup parent) {
 		
 		if(position > 0) {
+			// TODO ADD LAYOUT VIEW ORDER
 			Stock stock = stocks.get(position - 1);
 			view = inflater.inflate(R.layout.stock_list_row, null);
 			getDefaultView(stock, view);
@@ -315,133 +344,6 @@ public class StockListAdapter extends BaseAdapter {
 			getSettingsView(stock, view);
 			getNavigationView(stock, view);
 			return view;
-			
-			/*// Find fields.
-			TextView tick = (TextView) view.findViewById(R.id.stock_tick);
-			TextView name = (TextView) view.findViewById(R.id.stock_name);
-			TextView date = (TextView) view.findViewById(R.id.stock_date);
-			TextView stockValue = (TextView) view.findViewById(R.id.stock_stock_value);
-			TextView change = (TextView) view.findViewById(R.id.stock_change);
-			TextView changePercentage = (TextView) view.findViewById(R.id.stock_change_percentage);
-			TextView nStocks = (TextView) view.findViewById(R.id.stock_n_stocks);
-			TextView totalValue = (TextView) view.findViewById(R.id.stock_total_value);
-			ImageButton standardButton = (ImageButton) view.findViewById(R.id.stock_show_graph_button);
-			//ImageButton graphButton = (ImageButton) view.findViewById(R.id.stock_show_standard_button);
-			
-			// Set fields' values.
-			NumberFormat nf = NumberFormat.getInstance();
-			nf.setMinimumFractionDigits(2);
-			nf.setMaximumFractionDigits(2);
-			tick.setText(stock.getTick());
-			name.setText(stock.getName());
-			date.setText(new SimpleDateFormat("HH:mm, MMMM d", Locale.US).format(stock.getDate()));
-			stockValue.setText(nf.format(stock.getStockValue()));
-			change.setText(nf.format(stock.getChange()));
-			changePercentage.setText(nf.format(stock.getChangePercentage()) + "%");
-			totalValue.setText(nf.format(stock.getTotalValue()));
-			nStocks.setText(NumberFormat.getNumberInstance(Locale.US).format(stock.getnStocks()));
-			standardButton.setOnClickListener(getStandardOnClickListener(stock));
-			//graphButton.setOnClickListener(getGraphOnClickListener(stock));
-			
-			LinearLayout layout = (LinearLayout) view.findViewById(R.id.stock_chart_layout);
-			XYMultipleSeriesDataset series = new XYMultipleSeriesDataset();
-			TimeSeries serie = new TimeSeries("");
-			Calendar c = Calendar.getInstance();
-			c.setTime(new Date());
-			serie.add(c.getTime(), 400);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 550);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 440);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 560);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 400);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 550);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 440);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 560);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 400);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 550);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 440);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 560);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 500);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			serie.add(c.getTime(), 445);
-			c.add(Calendar.DATE, 1);
-			series.addSeries(serie);
-			XYMultipleSeriesRenderer renderers = new XYMultipleSeriesRenderer();
-			XYSeriesRenderer renderer = new XYSeriesRenderer();
-			renderer.setLineWidth(5);
-			renderer.setColor(Color.parseColor("#5d8aa9"));
-			renderers.setLabelsTextSize(30);
-			renderers.addSeriesRenderer(renderer);
-			renderers.setYLabelsPadding(10);
-			renderers.setYLabelsAlign(Align.RIGHT);
-			renderers.setMarginsColor(Color.argb(0x00, 0xff, 0x00, 0x00));
-			renderers.setShowLegend(false);
-			renderers.setShowGridX(true);
-			renderers.setGridColor(Color.parseColor("#5d8aa9"));
-			renderers.setXLabelsColor(Color.parseColor("#333333"));
-			renderers.setYLabelsColor(0, Color.parseColor("#333333"));
-			renderers.setMargins(new int[] { 50, 80, 0, 20 });
-			//renderers.setXAxisMax(31);
-			renderers.setPanEnabled(false);
-			GraphicalView mChartView = ChartFactory.getTimeChartView(context, series, renderers, "dd/MM");
-	        layout.addView(mChartView);
-		    
-			// Dirty trick to cheat view bug.
-			if(stock.isFlipped()) {
-				standardButton.performClick();
-			}
-			
-			// Change colors.
-			if(stock.isChangePositive()) {
-				change.setTextColor(context.getResources().getColor(R.color.color_stock_change_positive));
-				changePercentage.setTextColor(context.getResources().getColor(R.color.color_stock_change_positive));
-			} else {
-				change.setTextColor(context.getResources().getColor(R.color.color_stock_change_negative));
-				changePercentage.setTextColor(context.getResources().getColor(R.color.color_stock_change_negative));
-			}*/
 		} else {
 			// TODO SETUP FIRST ROW
 			view = inflater.inflate(R.layout.stock_list_first_row, null);

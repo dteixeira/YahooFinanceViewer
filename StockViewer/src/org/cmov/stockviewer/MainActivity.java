@@ -8,7 +8,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.cmov.stockviewer.animations.CustomSwipeDismissAdapter;
 import org.cmov.stockviewer.requests.HttpRequestAsyncTask;
 import org.cmov.stockviewer.requests.HttpRequestResultCallback;
-import com.example.stockviewer.R;
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import android.os.Bundle;
 import android.app.Activity;

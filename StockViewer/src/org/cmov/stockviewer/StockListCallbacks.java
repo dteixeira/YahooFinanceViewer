@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import com.example.stockviewer.R;
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 public class StockListCallbacks implements CustomOnDismissCallback, UndoListener {
