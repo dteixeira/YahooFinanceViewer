@@ -1,7 +1,12 @@
 package org.cmov.stockviewer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+
+import org.achartengine.model.TimeSeries;
+
+import android.util.Pair;
 
 public class Stock implements Serializable {
 
@@ -17,22 +22,14 @@ public class Stock implements Serializable {
 	private double changePercentage = 0.0;
 	private boolean changePositive = false;
 	private int stockMultiplier = 1;
-	private boolean flipped = false;
-
-	public boolean isFlipped() {
-		return flipped;
-	}
-
-	public void setFlipped(boolean flipped) {
-		this.flipped = flipped;
-	}
-
-	public int getStockMultiplier() {
-		return stockMultiplier;
-	}
-
-	public void setStockMultiplier(int stockMultiplier) {
-		this.stockMultiplier = stockMultiplier;
+	private StockView stockView = StockView.STANDARD;
+	private ArrayList<Pair<Date, Double>> historicData = new ArrayList<Pair<Date,Double>>();
+	
+	public static enum StockView {
+		STANDARD,
+		CHART,
+		SETTINGS,
+		NAVIGATION
 	}
 
 	public void updateStock(String csv) {
@@ -41,7 +38,6 @@ public class Stock implements Serializable {
 			tokens[i] = tokens[i].replace("\"", "");
 		}
 		stockMultiplier = 1;
-		flipped = false;
 		name = tokens[0];
 		tick = tokens[1];
 		stockValue = Double.parseDouble(tokens[2]);
@@ -50,6 +46,18 @@ public class Stock implements Serializable {
 		changePercentage = Double.parseDouble(tokens[4].replace("+", "").replace("-", "").replace("%", ""));
 		date = new Date();
 		totalValue = nStocks * stockValue;
+	}
+	
+	public void updateHistoricData(String csv) {
+		// TODO
+	}
+	
+	public TimeSeries getHistoricDataAsTimeSeries() {
+		TimeSeries series = new TimeSeries("");
+		for(Pair<Date, Double> pair : historicData) {
+			series.add(pair.first, pair.second);
+		}
+		return series;
 	}
 	
 	public boolean isChangePositive() {
@@ -121,6 +129,30 @@ public class Stock implements Serializable {
 
 	public void setChangePercentage(double changePercentage) {
 		this.changePercentage = changePercentage;
+	}
+
+	public StockView getStockView() {
+		return stockView;
+	}
+
+	public void setStockView(StockView stockView) {
+		this.stockView = stockView;
+	}
+	
+	public int getStockMultiplier() {
+		return stockMultiplier;
+	}
+
+	public void setStockMultiplier(int stockMultiplier) {
+		this.stockMultiplier = stockMultiplier;
+	}
+
+	public ArrayList<Pair<Date, Double>> getHistoricData() {
+		return historicData;
+	}
+
+	public void setHistoricData(ArrayList<Pair<Date, Double>> historicData) {
+		this.historicData = historicData;
 	}
 
 }
