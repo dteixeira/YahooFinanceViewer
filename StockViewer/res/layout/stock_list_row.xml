@@ -53,7 +53,7 @@
     <LinearLayout
         android:id="@+id/stock_standard_layout"
         android:layout_width="fill_parent"
-        android:layout_height="175dp"
+        android:layout_height="145dp"
         android:orientation="vertical" >
 
         <!-- Update date -->
@@ -81,7 +81,7 @@
                 android:layout_weight="0.5"
                 android:gravity="center_vertical|left"
                 android:textColor="@color/color_stock_stock_value"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/stock_change"
@@ -89,7 +89,7 @@
                 android:layout_height="30dp"
                 android:layout_weight="0.25"
                 android:gravity="center_vertical|right"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/stock_change_percentage"
@@ -97,7 +97,7 @@
                 android:layout_height="30dp"
                 android:layout_weight="0.25"
                 android:gravity="center_vertical|right"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <!-- Client stock info -->
@@ -132,7 +132,7 @@
     <LinearLayout
         android:id="@+id/stock_settings_layout"
         android:layout_width="fill_parent"
-        android:layout_height="175dp"
+        android:layout_height="145dp"
         android:orientation="vertical" >
 
         <SeekBar
@@ -233,33 +233,57 @@
     <LinearLayout
         android:id="@+id/stock_chart_layout"
         android:layout_width="fill_parent"
-        android:layout_height="175dp"
+        android:layout_height="145dp"
         android:orientation="horizontal" />
     
     <LinearLayout
         android:id="@+id/stock_navigation_layout"
         android:layout_width="fill_parent"
-        android:layout_height="175dp"
-        android:orientation="horizontal" >
+        android:layout_height="145dp"
+        android:orientation="vertical" >
         
-        <TextView
+        <Button
+            style="@style/NavigationButton"
+            android:layout_gravity="center_horizontal|center"
             android:id="@+id/stock_navigation_standard_layout"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:text="@string/navigation_stock_info_text"
+            android:layout_marginTop="20dp" />
         
-        <TextView
+        <Button
+            style="@style/NavigationButton"
+            android:layout_gravity="center_horizontal|center"
             android:id="@+id/stock_navigation_chart_layout"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:text="@string/navigation_stock_history_text" />
         
-        <TextView
+        <Button
+            style="@style/NavigationButton"
+            android:layout_gravity="center_horizontal|center"
             android:id="@+id/stock_navigation_settings_layout"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:text="@string/navigation_change_stock_text" />
         
 	</LinearLayout>
+	
+    <!-- RelativeLayout 
+        android:id="@+id/stock_loading_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="145dp"
+        android:orientation="horizontal" >
+        
+        <ProgressBar 
+            style="@style/LoadingIndicator"
+            android:layout_centerInParent="true"/>
+       
+    </RelativeLayout-->
 
 </LinearLayout>

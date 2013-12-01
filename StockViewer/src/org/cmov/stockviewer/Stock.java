@@ -1,12 +1,15 @@
 package org.cmov.stockviewer;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import org.achartengine.model.TimeSeries;
-
-import android.util.Pair;
+import org.cmov.stockviewer.utils.HistoricData;
 
 public class Stock implements Serializable {
 
@@ -23,20 +26,29 @@ public class Stock implements Serializable {
 	private boolean changePositive = false;
 	private int stockMultiplier = 1;
 	private StockView stockView = StockView.STANDARD;
-	private ArrayList<Pair<Date, Double>> historicData = new ArrayList<Pair<Date,Double>>();
+	private ArrayList<HistoricData> historicData = new ArrayList<HistoricData>();
+	private boolean specialStockViewChange = false;
 	
 	public static enum StockView {
 		STANDARD,
 		CHART,
 		SETTINGS,
-		NAVIGATION
+		NAVIGATION,
+		LOADING
 	}
 
-	public void updateStock(String csv) {
+	public void updateStock(String csv, Date nDate) {
 		String[] tokens = csv.split(",");
 		for(int i = 0; i < tokens.length; ++i) {
 			tokens[i] = tokens[i].replace("\"", "");
 		}
+		if(tokens.length > 5) {
+			tokens[1] += tokens[2];
+			tokens[2] = tokens[3];
+			tokens[3] = tokens[4];
+			tokens[4] = tokens[5];
+		}
+		specialStockViewChange = false;
 		stockMultiplier = 1;
 		name = tokens[0];
 		tick = tokens[1];
@@ -44,18 +56,42 @@ public class Stock implements Serializable {
 		changePositive = tokens[3].contains("+");
 		change = Double.parseDouble(tokens[3].replace("+", "").replace("-", ""));
 		changePercentage = Double.parseDouble(tokens[4].replace("+", "").replace("-", "").replace("%", ""));
-		date = new Date();
+		date = nDate;
 		totalValue = nStocks * stockValue;
 	}
 	
-	public void updateHistoricData(String csv) {
-		// TODO
+	public void updateHistoricData(String csv, Date date) throws NumberFormatException, ParseException {
+		String[] tokens = csv.split("\n");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+		ArrayList<HistoricData> temp = new ArrayList<HistoricData>();
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd", Locale.US);
+		String today = fmt.format(date);
+		for(int i = 1; i < tokens.length; ++i) {
+			String[] values = tokens[i].split(",");
+			HistoricData hd = new HistoricData(df.parse(values[0]), Double.parseDouble(values[4]));
+			String day = fmt.format(hd.getDate());
+			
+			// Update values.
+			if(today.equals(day)) {
+				hd.setnStocks(this.nStocks);
+			} else {
+				for(HistoricData h : historicData) {
+					if(fmt.format(h.getDate()).equals(day)) {
+						hd.setnStocks(h.getnStocks());
+					}
+				}
+			}
+			
+			// Add new value.
+			temp.add(hd);
+		}
+		historicData = temp;
 	}
 	
 	public TimeSeries getHistoricDataAsTimeSeries() {
 		TimeSeries series = new TimeSeries("");
-		for(Pair<Date, Double> pair : historicData) {
-			series.add(pair.first, pair.second);
+		for(HistoricData pair : historicData) {
+			series.add(pair.getDate(), pair.getValue());
 		}
 		return series;
 	}
@@ -147,12 +183,20 @@ public class Stock implements Serializable {
 		this.stockMultiplier = stockMultiplier;
 	}
 
-	public ArrayList<Pair<Date, Double>> getHistoricData() {
+	public ArrayList<HistoricData> getHistoricData() {
 		return historicData;
 	}
 
-	public void setHistoricData(ArrayList<Pair<Date, Double>> historicData) {
+	public void setHistoricData(ArrayList<HistoricData> historicData) {
 		this.historicData = historicData;
+	}
+
+	public boolean isSpecialStockViewChange() {
+		return specialStockViewChange;
+	}
+
+	public void setSpecialStockViewChange(boolean specialStockViewChange) {
+		this.specialStockViewChange = specialStockViewChange;
 	}
 
 }

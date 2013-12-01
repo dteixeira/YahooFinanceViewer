@@ -16,5 +16,27 @@
 	<string name="stock_n_stocks_default_min">0</string>
 	<string name="stock_n_stocks_default_max">99</string>
 	<string name="text_layout_change_button">layout change</string>
+	<string name="navigation_stock_info_text">Stock Info</string>
+	<string name="navigation_stock_history_text">Stock History</string>
+	<string name="navigation_change_stock_text">Change Stock</string>
+	<string name="stock_portfolio_title_text">Portfolio</string>
+	<string name="stock_chart_no_data_text">No Data</string>
+	
+	<string name="stock_tick_spinner_prompt">Choose a tick</string>
+ 
+    <string-array name="stock_tick_spinner_array">
+        <item>IBM</item>
+        <item>MSFT</item>
+        <item>CSCO</item>
+        <item>AMZN</item>
+        <item>HPQ</item>
+        <item>GOOG</item>
+        <item>AAPL</item>
+        <item>ORCL</item>
+        <item>MSI</item>
+        <item>AMD</item>
+    </string-array>
+        <string name="stock_common_stocks_text">Common stocks</string>
+        <string name="stock_add_custom_stock_text">Add custom stock</string>
 
 </resources>
