@@ -43,6 +43,7 @@
                 android:id="@+id/stock_show_navigation_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_action_core_overflow"
@@ -163,7 +164,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50"
+                android:layout_weight="0.45"
                 android:gravity="center"
                 android:text="@string/stock_times_10"
                 android:textSize="12sp" />
@@ -171,7 +172,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.10"
+                android:layout_weight="0.15"
                 android:gravity="center"
                 android:text="@string/stock_times_100"
                 android:textSize="12sp" />
@@ -273,17 +274,5 @@
             android:text="@string/navigation_change_stock_text" />
         
 	</LinearLayout>
-	
-    <!-- RelativeLayout 
-        android:id="@+id/stock_loading_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="145dp"
-        android:orientation="horizontal" >
-        
-        <ProgressBar 
-            style="@style/LoadingIndicator"
-            android:layout_centerInParent="true"/>
-       
-    </RelativeLayout-->
 
 </LinearLayout>

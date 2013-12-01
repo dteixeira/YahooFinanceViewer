@@ -32,15 +32,18 @@
             android:orientation="horizontal" >
 
             <ImageButton
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:id="@+id/stock_add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/text_layout_change_button"
                 android:src="@drawable/ic_action_collections_new_label" />
 
             <ImageButton
+                android:paddingLeft="10dp"
                 android:id="@+id/stock_update_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
