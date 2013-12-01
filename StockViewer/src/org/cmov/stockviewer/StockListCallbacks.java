@@ -63,6 +63,9 @@ public class StockListCallbacks implements CustomOnDismissCallback, UndoListener
 		mUndoBarController.hideUndoBar(true);
 		mUndoBarController.showUndoBar(false, context.getString(R.string.undo_stock_remove), intent);
 		mListAdapter.notifyDataSetChanged();
+		if(mStockListAdapter.getItems().size() == 0) {
+			((SwingBottomInAnimationAdapter) mListAdapter).setShouldAnimateFromPosition(0);
+		}
 	}
 
 	@Override
