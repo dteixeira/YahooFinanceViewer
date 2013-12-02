@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:orientation="vertical" >
-
-    <TextView
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android">
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="20dp"
 	    android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/stock_common_stocks_text"
-        android:textSize="16sp" />
-
-    <Spinner
-	    android:layout_marginLeft="20dp"
-	    android:layout_marginRight="20dp"
-        android:id="@+id/stock_tick_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:entries="@array/stock_tick_spinner_array"
-        android:prompt="@string/stock_tick_spinner_prompt" />
-
-    <TextView
-	    android:layout_marginLeft="20dp"
-	    android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/stock_add_custom_stock_text"
-        android:textSize="16sp" />
-
-    <EditText
-	    android:layout_marginLeft="20dp"
-	    android:layout_marginRight="20dp"
-        android:id="@+id/stock_tick_edittext"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="10dp"
-        android:focusable="true"
-        android:inputType="textCapCharacters" >
-
-        <requestFocus />
-    </EditText>
-
-</LinearLayout>
+	    android:orientation="vertical" >
+	
+	    <TextView
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:text="@string/stock_common_stocks_text"
+	        android:textSize="16sp" />
+	
+	    <Spinner
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"
+	        android:id="@+id/stock_tick_spinner"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:entries="@array/stock_tick_spinner_array"
+	        android:prompt="@string/stock_tick_spinner_prompt" />
+	
+	    <TextView
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:text="@string/stock_add_custom_stock_text"
+	        android:textSize="16sp" />
+	
+	    <EditText
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"
+	        android:id="@+id/stock_tick_edittext"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="30dp"
+	        android:layout_marginTop="10dp"
+	        android:focusable="true"
+	        android:inputType="textCapCharacters" >
+	
+	        <requestFocus />
+	    </EditText>
+	
+	</LinearLayout>
+</ScrollView>
